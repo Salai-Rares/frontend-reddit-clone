@@ -9,9 +9,11 @@ import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subred
 
 const routes: Routes = [
   {path:'',component: HomeComponent},
-  { path: 'list-subreddits', component: ListSubredditsComponent },
   { path: 'create-post', component: CreatePostComponent},
+  { path: 'list-subreddits', component: ListSubredditsComponent },
   { path: 'create-subreddit', component: CreateSubredditComponent},
+  { path: 'list-subreddits', component: ListSubredditsComponent },
+
   {path:'signup',component:SignupComponent},
   {path:'login', component:LoginComponent}
 ];
