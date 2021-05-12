@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SignupRequestPayload } from '../signup/signup-request.payload';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService
