@@ -21,6 +21,7 @@ import { VoteButtonComponent } from './shared/vote-button/vote-button.component'
 import { CreateSubredditComponent } from './subreddit/create-subreddit/create-subreddit.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subreddits.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subred
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    EditorModule
+
   ],
   providers: [
     {
