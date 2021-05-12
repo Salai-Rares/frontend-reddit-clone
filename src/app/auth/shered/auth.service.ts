@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponse } from '../login/login-response.payload';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -13,6 +13,13 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
+
+  refreshTokenPayload = {
+    refreshToken: this.getRefreshToken(),
+    username: this.getUserName()
+  }
+
+  
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService
@@ -31,7 +38,19 @@ export class AuthService {
         return true;
       }));
     }
-
+     
+    refreshToken() {
+      return this.http.post<LoginResponse>('http://localhost:8080/api/auth/refresh/token',
+        this.refreshTokenPayload)
+        .pipe(tap(response => {
+          this.localStorage.clear('authenticationToken');
+          this.localStorage.clear('expiresAt');
+  
+          this.localStorage.store('authenticationToken',
+            response.authenticationToken);
+          this.localStorage.store('expiresAt', response.expiresAt);
+        }));
+    }
     getJwtToken() {
       return this.localStorage.retrieve('authenticationToken');
     }
