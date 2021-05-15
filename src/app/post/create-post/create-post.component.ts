@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { SubredditModel } from 'src/app/subreddit/subreddit-respones';
+import { SubredditModel } from 'src/app/subreddit/subreddit-response';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/shared/post.service';
 import { SubredditService } from 'src/app/subreddit/subreddit.service';
