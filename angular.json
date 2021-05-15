@@ -1,12 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend-reddit-clone": {
+    "angular-reddit-clone": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -16,23 +13,22 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/frontend-reddit-clone",
+            "outputPath": "dist/angular-reddit-clone",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -45,7 +41,9 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -67,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "frontend-reddit-clone:build"
+            "browserTarget": "angular-reddit-clone:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "frontend-reddit-clone:build:production"
+              "browserTarget": "angular-reddit-clone:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend-reddit-clone:build"
+            "browserTarget": "angular-reddit-clone:build"
           }
         },
         "test": {
@@ -93,9 +91,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -117,16 +113,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "frontend-reddit-clone:serve"
+            "devServerTarget": "angular-reddit-clone:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "frontend-reddit-clone:serve:production"
+              "devServerTarget": "angular-reddit-clone:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "frontend-reddit-clone"
+    }},
+  "defaultProject": "angular-reddit-clone"
 }
